@@ -7,26 +7,97 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+  // If the number is negative, it doesn't have a factorial. Return an
+  // impossible value to indicate this.
+  if (n < 0) {
+    return null;
+  }
+
+  // If the number is zero, its factorial is one.
+  if (n === 0) {
+    return 1;
+  }
+
+  // If the number is neither illegal nor zero, call factorial again,
+  // this time passing in a smaller number. Eventually we'll reach 0,
+  // causing each call to return to its caller and the recursion terminates.
+  return (n * factorial(n - 1));
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+
+  if(array.length === 0){
+  	return 0;
+  } else {
+    return array[0] + sum(array.slice(1))
+  }
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  // when the function is called value of array changes to currentValue
+
+	//input: nested array;  
+	//espected output: summed number 
+	//strategy: 
+	// make final sum variable
+	// loop through array
+	// check if array is an array 
+	// if it is an array 
+	// loop through the array and add the value to the final sum until 
+	//  inner loop is over  then go to bigger loop and finish those out. 
+	// if not then add that value to final sum 
+	// 	return final sum using array Sum function 
+var finalSum = 0; 
+for (var i = 0; i < array.length; i++){ 
+  var currentValue = array[i]; // currentValue = currentValue[i];
+  if (typeof(currentValue) === 'number'){
+    finalSum += currentValue; 
+  } else{ 
+    //loop through array  again
+    // add value to final Sum
+    //call the function 
+   finalSum += arraySum(currentValue);
+  }
+}
+return  finalSum;
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
-};
+	//input: number 
+	//output: boolean true or false 
+	//startegy:  
+  //base case: 
+	//if odd number plus 1 the number is going to be even
+ if(n === 1){ 
+   return false; //results odd
+ } else if(n === 0){
+   return true;//its even 
+ } else if (n < 0) {
+   return isEven(-n); 
+ }
+ else {
+   return isEven(n -2)
+  }
+ }
+
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+	//input: number 
+	//output: number 
+	// base case : 
+
+	if (n<= 1){
+		return 0
+	}; 
+	return sumBelow(n-1);
 };
 
 // 6. Get the integers within a range (x, y).
